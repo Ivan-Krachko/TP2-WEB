@@ -92,7 +92,7 @@ namespace UI.Web
             this.Materia = this.MateriaData.GetOne(id);
             this.txtDescripcion.Text = this.Materia.DescMateria;
             this.txtHssemanales.Text = this.Materia.HSSemanales.ToString();
-            this.txtHstotales.Text = this.Materia.ToString();
+            this.txtHstotales.Text = this.Materia.HSTotales.ToString();
             this.ddlPlan.SelectedValue = this.Materia.IDPlan.ToString();
         }
 
@@ -102,10 +102,96 @@ namespace UI.Web
             {
                 this.formPanel.Visible = true;
                 this.FormMode = FormModes.Modificacion;
+                this.EnableForm(true);
                 this.LoadForm(SelectedID);
             }
         }
 
-        //29
+        private void LoadMaterias(Materia materia)
+        {
+            materia.DescMateria = this.txtDescripcion.Text;
+            materia.HSSemanales = int.Parse(this.txtHssemanales.Text);
+            materia.HSTotales = int.Parse(this.txtHstotales.Text);
+            materia.IDPlan = int.Parse(ddlPlan.SelectedValue);
+        }
+
+        private void SaveMaterias(Materia materia)
+        {
+            this.MateriaData.Save(materia);
+        }
+
+        protected void lbtnAceptar_Click(object sender, EventArgs e)
+        {
+
+            switch (this.FormMode)
+            {
+                case FormModes.Baja:
+                    this.DeleteMaterias(SelectedID);
+                    this.LoadGrid();
+                    break;
+                case FormModes.Modificacion:
+                    this.Materia = new Materia();
+                    this.Materia.ID = this.SelectedID;
+                    this.Materia.State = BusinessEntity.States.Modified;
+                    this.LoadMaterias(this.Materia);
+                    this.SaveMaterias(this.Materia);
+                    this.LoadGrid();
+                    break;
+                case FormModes.Alta:
+                    this.Materia = new Materia();
+                    this.LoadMaterias(this.Materia);
+                    this.SaveMaterias(this.Materia);
+                    this.LoadGrid();
+                    break;
+                default:
+                    break;
+            }
+
+            this.formPanel.Visible = false;
+        }
+
+        private void EnableForm (bool enable)
+        {
+            this.txtDescripcion.Enabled = enable;
+            this.txtHssemanales.Enabled = enable;
+            this.txtHstotales.Enabled = enable;
+            this.ddlPlan.Enabled = enable;
+        }
+
+        protected void lbtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (this.IsEntitySelected)
+            {
+                this.formPanel.Visible = true;
+                this.FormMode = FormModes.Baja;
+                this.EnableForm(false);
+                this.LoadForm(this.SelectedID);
+            }
+        }
+
+        private void DeleteMaterias(int id)
+        {
+            this.MateriaData.Delete(id);
+        }
+
+        protected void lbtnNuevo_Click(object sender, EventArgs e)
+        {
+            this.formPanel.Visible = true;
+            this.FormMode = FormModes.Alta;
+            this.ClearForm();
+            this.EnableForm(true);
+        }
+
+        private void ClearForm()
+        {
+            this.txtDescripcion.Text = string.Empty;
+            this.txtHssemanales.Text = string.Empty;
+            this.txtHstotales.Text = string.Empty;
+        }
+
+        protected void lbtnCancelar_Click(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("Materias.aspx");
+        }
     }
 }
