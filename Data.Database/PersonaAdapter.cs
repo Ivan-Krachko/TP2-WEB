@@ -30,7 +30,7 @@ namespace Data.Database
                     per.Telefono = (string)drPersonas["telefono"];
                     per.Fecha_nac = (DateTime)drPersonas["fecha_nac"];
                     per.Legajo = (int)drPersonas["legajo"];
-                    per.Tipo_persona = (Business.Entities.Persona.Tipo_personas)drPersonas["tipo_persona"];
+                    per.TipoPersona = (Business.Entities.Persona.tipoPersonas)drPersonas["tipo_persona"];
                     per.IDPlan = (int)drPersonas["id_plan"];
                     personas.Add(per);
                 }
@@ -67,7 +67,7 @@ namespace Data.Database
                     per.Telefono = (string)drPersonas["telefono"];
                     per.Fecha_nac = (DateTime)drPersonas["fecha_nac"];
                     per.Legajo = (int)drPersonas["legajo"];
-                    per.Tipo_persona = (Business.Entities.Persona.Tipo_personas)drPersonas["tipo_persona"];
+                    per.TipoPersona = (Business.Entities.Persona.tipoPersonas)drPersonas["tipo_persona"];
                     per.IDPlan = (int)drPersonas["id_plan"];
                 }
                 drPersonas.Close();
@@ -100,7 +100,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = perso.Telefono;
                 cmdSave.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = perso.Fecha_nac;
                 cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = perso.Legajo;
-                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = perso.Tipo_persona;
+                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = perso.TipoPersona;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = perso.IDPlan;
                 cmdSave.ExecuteNonQuery();
             }
@@ -154,7 +154,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = pers.Telefono;
                 cmdSave.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = pers.Fecha_nac;
                 cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = pers.Legajo;
-                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = pers.Tipo_persona;
+                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = pers.TipoPersona;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = pers.IDPlan;
                 cmdSave.ExecuteNonQuery();
 
@@ -207,7 +207,7 @@ namespace Data.Database
                     profesor.Telefono = (string)drPersonas["telefono"];
                     profesor.Fecha_nac = (DateTime)drPersonas["fecha_nac"];
                     profesor.Legajo = (int)drPersonas["legajo"];
-                    profesor.Tipo_persona = (Business.Entities.Persona.Tipo_personas)drPersonas["tipo_persona"];
+                    profesor.TipoPersona = (Business.Entities.Persona.tipoPersonas)drPersonas["tipo_persona"];
                     profesor.IDPlan = (int)drPersonas["id_plan"];
                     profes.Add(profesor);
                 }

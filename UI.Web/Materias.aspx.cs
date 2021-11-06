@@ -68,7 +68,10 @@ namespace UI.Web
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadGrid();
+            if (!this.IsPostBack)
+            {
+                this.LoadGrid();
+            }
         }
 
         private void LoadGrid()
@@ -80,6 +83,7 @@ namespace UI.Web
             ddlPlan.DataTextField = "DescPlan";
             ddlPlan.DataValueField = "ID";
             ddlPlan.DataBind();
+
         }
 
         protected void dgvMaterias_SelectedIndexChanged(object sender, EventArgs e)
