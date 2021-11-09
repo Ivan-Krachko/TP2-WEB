@@ -41,5 +41,10 @@ namespace Business.Logic
         {
             MateriaData.Delete(id);
         }
+
+        public List<Materia> BuscarMateriaxPersona(int id)
+        {
+            return MateriaData.BuscarMateriaxPersona(id);
+        }
     }
 }

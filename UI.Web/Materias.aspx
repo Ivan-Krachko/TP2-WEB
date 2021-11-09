@@ -31,6 +31,7 @@
         <asp:LinkButton ID="lbtnEditar" runat="server" OnClick="lbtnEditar_Click">Editar</asp:LinkButton>
         <asp:LinkButton ID="lbtnEliminar" runat="server" OnClick="lbtnEliminar_Click">Eliminar</asp:LinkButton>
         <asp:LinkButton ID="lbtnNuevo" runat="server" OnClick="lbtnNuevo_Click">Nuevo</asp:LinkButton>
+        <asp:LinkButton ID="lbtnInforme" runat="server" OnClick="lbtnInforme_Click">Informe</asp:LinkButton>
     </asp:Panel>
     <asp:Panel ID="formPanel" Visible="false" runat="server">
         <asp:Label ID="lblDescripcion" runat="server">Descripcion</asp:Label>
@@ -61,7 +62,6 @@
         <br />
         <asp:ValidationSummary ID="ValidationSummary1" ForeColor="Red" runat="server" />
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </asp:Panel>
 </asp:Content>
 

@@ -77,29 +77,41 @@ namespace UI.Web
 
         private void LoadGrid()
         {
-            dgvDocentesCursos.DataSource = DocenteCursoData.GetAll();
-            dgvDocentesCursos.DataBind();
+            if (Session["tipoPersona"].ToString() == "Admin")
+            {
+                dgvDocentesCursos.DataSource = DocenteCursoData.GetAll();
+                dgvDocentesCursos.DataBind();
 
-            PersonaLogic profes = new PersonaLogic();
-            ddlDocente.DataSource = profes.RecuperarPorfesores();
-            ddlDocente.DataTextField = "Apellido";
-            ddlDocente.DataValueField = "ID";
-            ddlDocente.DataBind();
+                PersonaLogic profes = new PersonaLogic();
+                ddlDocente.DataSource = profes.RecuperarPorfesores();
+                ddlDocente.DataTextField = "Apellido";
+                ddlDocente.DataValueField = "ID";
+                ddlDocente.DataBind();
 
-            MateriaLogic materia = new MateriaLogic();
-            ddlMateria.DataSource = materia.GetAll();
-            ddlMateria.DataTextField = "DescMateria";
-            ddlMateria.DataValueField = "ID";
-            ddlMateria.DataBind();
+                MateriaLogic materia = new MateriaLogic();
+                ddlMateria.DataSource = materia.GetAll();
+                ddlMateria.DataTextField = "DescMateria";
+                ddlMateria.DataValueField = "ID";
+                ddlMateria.DataBind();
 
-            ComisionLogic comision = new ComisionLogic();
-            ddlComision.DataSource = comision.GetAll();
-            ddlComision.DataTextField = "DescComision";
-            ddlComision.DataValueField = "ID";
-            ddlComision.DataBind();
+                ComisionLogic comision = new ComisionLogic();
+                ddlComision.DataSource = comision.GetAll();
+                ddlComision.DataTextField = "DescComision";
+                ddlComision.DataValueField = "ID";
+                ddlComision.DataBind();
 
-            ddlCargo.DataSource = Enum.GetValues(typeof(DocenteCurso.cargos));
-            ddlCargo.DataBind();
+                ddlCargo.DataSource = Enum.GetValues(typeof(DocenteCurso.cargos));
+                ddlCargo.DataBind();
+            }
+            else
+            {
+                lbtnEditar.Visible = false;
+                lbtnNuevo.Visible = false;
+                lbtnEliminar.Visible = false;
+                lbtnInforme.Visible = false;
+                lbtnAceptar.Visible = false;
+                lbtnCancelar.Visible = false;
+            }
         }
 
         protected void dgvDocentesCursos_SelectedIndexChanged(object sender, EventArgs e)
@@ -223,6 +235,11 @@ namespace UI.Web
         protected void lbtnCancelar_Click(object sender, EventArgs e)
         {
             Page.Response.Redirect("DocentesCurso.aspx");
+        }
+
+        protected void lbtnInforme_Click(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("~/Reportes/reportesDocentesCursos.aspx");
         }
     }
 }

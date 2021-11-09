@@ -41,5 +41,10 @@ namespace Business.Logic
         {
             UsuarioData.Delete(id);
         }
+
+        public Business.Entities.Persona BuscarPersona(int id)
+        {
+            return UsuarioData.BuscarPersona(id);
+        }
     }
 }

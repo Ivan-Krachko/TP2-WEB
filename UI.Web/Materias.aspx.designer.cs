@@ -69,6 +69,15 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.LinkButton lbtnNuevo;
 
         /// <summary>
+        /// lbtnInforme control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnInforme;
+
+        /// <summary>
         /// formPanel control.
         /// </summary>
         /// <remarks>
@@ -211,14 +220,5 @@ namespace UI.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

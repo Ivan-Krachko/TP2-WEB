@@ -160,5 +160,43 @@ namespace Data.Database
             }
             materia.State = BusinessEntity.States.Unmodified;
         }
+
+        public List<Materia> BuscarMateriaxPersona(int ID)
+        {
+            List<Materia> materias = new List<Materia>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdMaterias = new SqlCommand(
+                    "select distinct m.id_materia,desc_materia,hs_totales,hs_semanales,m.id_plan from personas " +
+                    "inner join docentes_cursos dc on id_persona=id_docente " +
+                    "inner join cursos c on c.id_curso = dc.id_curso " +
+                    "inner join materias m on m.id_materia = c.id_materia " +
+                    "where id_persona = @id;", sqlConn);
+                cmdMaterias.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlDataReader drMaterias = cmdMaterias.ExecuteReader();
+                if (drMaterias.Read())
+                {
+                    Materia mat = new Materia();
+                    mat.ID = (int)drMaterias["id_materia"];
+                    mat.DescMateria = (string)drMaterias["desc_materia"];
+                    mat.HSSemanales = (int)drMaterias["hs_semanales"];
+                    mat.HSTotales = (int)drMaterias["hs_totales"];
+                    mat.IDPlan = (int)drMaterias["id_plan"];
+                    materias.Add(mat);
+                }
+                drMaterias.Close();
+            }
+            catch (Exception e)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar datos de la materia", e);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return materias;
+        }
     }
 }

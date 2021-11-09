@@ -16,7 +16,6 @@ namespace UI.Web
             {
                 this.LoadGrid(); //solo en el primero load de la pagina
                 this.LoadDropDownList();
-                
             }
         }
         ComisionLogic _comLogic;
@@ -51,8 +50,21 @@ namespace UI.Web
         
         private void LoadGrid()
         {
-            this.gridView.DataSource = this.ComLogic.GetAll();
-            this.gridView.DataBind();
+            if (Session["tipoPersona"].ToString() == "Admin")
+            {
+                this.gridView.DataSource = this.ComLogic.GetAll();
+                this.gridView.DataBind();
+            }
+            else
+            {
+                lbtnInforme.Visible = false;
+                this.lnkbtnNuevo.Visible = false;
+                lnkbtnEliminar.Visible = false;
+                lnkbtnEditar.Visible = false;
+                int id = int.Parse(Session["idPersona"].ToString());
+                gridView.DataSource = ComLogic.ComisionData.BuscarComisionesxPersona(id);
+                gridView.DataBind();
+            }
         }
         private Comision ComActual { get; set; }
         private void LoadDropDownList()
@@ -191,6 +203,11 @@ namespace UI.Web
         protected void lnkbtnCancelar_Click(object sender, EventArgs e)
         {
             this.Response.Redirect("Comisiones.aspx");
+        }
+
+        protected void lbtnInforme_Click(object sender, EventArgs e)
+        {
+           this.Response.Redirect("~/Reportes/reportesComisiones.aspx");
         }
     }
 }

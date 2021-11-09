@@ -76,14 +76,26 @@ namespace UI.Web
 
         private void LoadGrid()
         {
-            this.dgvMaterias.DataSource = this.MateriaData.GetAll();
-            dgvMaterias.DataBind();
-            PlanLogic pl = new PlanLogic();
-            ddlPlan.DataSource = pl.GetAll();
-            ddlPlan.DataTextField = "DescPlan";
-            ddlPlan.DataValueField = "ID";
-            ddlPlan.DataBind();
-
+            if (Session["tipoPersona"].ToString() == "Admin")
+            {
+                this.dgvMaterias.DataSource = this.MateriaData.GetAll();
+                dgvMaterias.DataBind();
+                PlanLogic pl = new PlanLogic();
+                ddlPlan.DataSource = pl.GetAll();
+                ddlPlan.DataTextField = "DescPlan";
+                ddlPlan.DataValueField = "ID";
+                ddlPlan.DataBind();
+            }
+            else
+            {
+                lbtnNuevo.Visible = false;
+                lbtnEditar.Visible = false;
+                lbtnEliminar.Visible = false;
+                lbtnInforme.Visible = false;
+                int id = int.Parse(Session["idPersona"].ToString());
+                this.dgvMaterias.DataSource = this.MateriaData.BuscarMateriaxPersona(id);
+                dgvMaterias.DataBind();
+            }
         }
 
         protected void dgvMaterias_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,7 +138,6 @@ namespace UI.Web
 
         protected void lbtnAceptar_Click(object sender, EventArgs e)
         {
-
             switch (this.FormMode)
             {
                 case FormModes.Baja:
@@ -150,7 +161,6 @@ namespace UI.Web
                 default:
                     break;
             }
-
             this.formPanel.Visible = false;
         }
 
@@ -196,6 +206,11 @@ namespace UI.Web
         protected void lbtnCancelar_Click(object sender, EventArgs e)
         {
             Page.Response.Redirect("Materias.aspx");
+        }
+
+        protected void lbtnInforme_Click(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("~/Reportes/reportesMaterias.aspx");
         }
     }
 }

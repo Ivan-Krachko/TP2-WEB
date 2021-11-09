@@ -21,7 +21,7 @@ namespace UI.Web
             Business.Logic.UsuarioLogic ul = new Business.Logic.UsuarioLogic();
             List<Business.Entities.Usuario> users = ul.GetAll();
 
-            Business.Entities.Usuario usuario = new Business.Entities.Usuario();
+            Business.Entities.Usuario usuarioActual = new Business.Entities.Usuario();
             bool encuentra = false;
 
             foreach (Business.Entities.Usuario user in users)
@@ -29,14 +29,18 @@ namespace UI.Web
                 if (user.NombreUsuario == txtUsuario.Text)
                 {
                     encuentra = true;
-                    usuario = user;
+                    usuarioActual = user;
                 }
             }
 
             if (encuentra == true)
             {
-                if (usuario.Clave == txtContraseña.Text)
+                if (usuarioActual.Clave == txtContraseña.Text)
                 {
+                    Persona persona = ul.BuscarPersona(usuarioActual.ID);
+                    Session["idPersona"] = persona.ID.ToString();
+                    Session["tipoPersona"] = persona.TipoPersona.ToString();
+                    Session["idUsuario"] = usuarioActual.ID;
                     Page.Response.Redirect("Default.aspx");
                 }
                 else
@@ -51,9 +55,6 @@ namespace UI.Web
 
         }
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

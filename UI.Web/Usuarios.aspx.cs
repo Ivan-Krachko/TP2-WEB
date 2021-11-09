@@ -16,6 +16,7 @@ namespace UI.Web
             if (!this.IsPostBack)
             {
                 this.LoadGrid(); //solo en el primero load de la pagina
+
             }
 
         }
@@ -51,8 +52,22 @@ namespace UI.Web
         }
         public void LoadGrid()
         {
-            this.gridView.DataSource = this.Logic.GetAll();
-            this.gridView.DataBind();
+            if(Session["tipoPersona"].ToString() == "Admin")
+            {
+                this.gridView.DataSource = this.Logic.GetAll();
+                this.gridView.DataBind();
+            }
+            else
+            {
+                this.lkbtnInforme.Visible = false;
+                lnkbtnNuevo.Visible = false;
+                lnkbtnEliminar.Visible = false;
+                string id = Session["idUsuario"].ToString();
+                List<Usuario> usuario = new List<Usuario>();
+                usuario.Add(this.Logic.GetOne(int.Parse(id)));
+                this.gridView.DataSource = usuario;
+                gridView.DataBind();
+            }
             
         }
 
@@ -199,6 +214,11 @@ namespace UI.Web
         {
             this.Response.Redirect("Usuarios.aspx");
            
+        }
+
+        protected void lkbtnInforme_Click(object sender, EventArgs e)
+        {
+            this.Response.Redirect("~/Reportes/reportUsuario.aspx");
         }
     }
 }

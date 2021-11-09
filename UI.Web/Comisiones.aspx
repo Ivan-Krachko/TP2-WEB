@@ -16,6 +16,7 @@
             <asp:LinkButton ID="lnkbtnEditar" runat="server" OnClick="lnkbtnEditar_Click" >Editar</asp:LinkButton>
             <asp:LinkButton ID="lnkbtnEliminar" runat="server" OnClick="lnkbtnEliminar_Click" >Eliminar</asp:LinkButton>
             <asp:LinkButton ID="lnkbtnNuevo" runat="server" OnClick="lnkbtnNuevo_Click" >Nuevo</asp:LinkButton>
+            <asp:LinkButton ID="lbtnInforme" runat="server" OnClick="lbtnInforme_Click">Infrome</asp:LinkButton>
         </asp:Panel>
         <asp:Panel ID="formPanel" Visible="false" runat="server">
         <asp:Label ID="lblDescCom" runat="server" Text="DescComision"></asp:Label>

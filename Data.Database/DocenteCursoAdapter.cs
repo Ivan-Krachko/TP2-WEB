@@ -193,5 +193,39 @@ namespace Data.Database
 
             return curso;
         }
+
+        public Curso BuscarComisiones(int idMateria, int idComision)
+        {
+            Curso curso = new Curso();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdBuscarCurso = new SqlCommand(
+                    "select * from cursos where id_materia = @idMateria and id_comision=@idComision;", sqlConn);
+                cmdBuscarCurso.Parameters.Add("@idMateria", SqlDbType.Int).Value = idMateria;
+                cmdBuscarCurso.Parameters.Add("@idComision", SqlDbType.Int).Value = idComision;
+                SqlDataReader drCurso = cmdBuscarCurso.ExecuteReader();
+                while (drCurso.Read())
+                {
+                    curso.ID = (int)drCurso["id_curso"];
+                    curso.IDComision = (int)drCurso["id_comision"];
+                    curso.IDMateria = (int)drCurso["id_materia"];
+                    curso.Cupo = (int)drCurso["cupo"];
+                    curso.AnioCalendario = (int)drCurso["anio_calendario"];
+                }
+                drCurso.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error, no se encontraron cursos para esa comision y materia", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+
+            return curso;
+        }
     }
 }
