@@ -42,10 +42,5 @@ namespace Business.Logic
         {
             ComisionData.Delete(id);
         }
-
-
-
-
-
     }
 }

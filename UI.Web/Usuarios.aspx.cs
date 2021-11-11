@@ -16,9 +16,7 @@ namespace UI.Web
             if (!this.IsPostBack)
             {
                 this.LoadGrid(); //solo en el primero load de la pagina
-
             }
-
         }
         public enum FormModes
         {
@@ -68,7 +66,6 @@ namespace UI.Web
                 this.gridView.DataSource = usuario;
                 gridView.DataBind();
             }
-            
         }
 
         private Usuario UsuarioActual { get; set; }
@@ -110,8 +107,6 @@ namespace UI.Web
             this.txtEmail.Text = this.UsuarioActual.Email;
             this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
             this.txtNombreUsuario.Text = this.UsuarioActual.NombreUsuario;
-
-
         }
 
         protected void lnkbtnEditar_Click(object sender, EventArgs e)
@@ -176,7 +171,6 @@ namespace UI.Web
             this.lblClave.Visible = enable;
             this.txtConfirmarClave.Visible = enable;
             this.lblConfirmarClave.Visible = enable;
-
         }
 
         protected void lnkbtnEliminar_Click(object sender, EventArgs e)
@@ -213,7 +207,6 @@ namespace UI.Web
         protected void lnkbtnCancelar_Click(object sender, EventArgs e)
         {
             this.Response.Redirect("Usuarios.aspx");
-           
         }
 
         protected void lkbtnInforme_Click(object sender, EventArgs e)
