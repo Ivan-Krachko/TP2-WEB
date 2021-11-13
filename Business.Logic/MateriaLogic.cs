@@ -46,5 +46,10 @@ namespace Business.Logic
         {
             return MateriaData.BuscarMateriaxPersona(id);
         }
+
+        public List<Curso> BuscarCursos(int idMateria)
+        {
+            return MateriaData.BuscarCursos(idMateria);
+        }
     }
 }

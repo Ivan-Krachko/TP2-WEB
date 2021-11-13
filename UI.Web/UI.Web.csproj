@@ -134,6 +134,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Curso.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DocentesCurso.aspx" />
     <Content Include="favicon.ico" />
@@ -162,6 +163,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Materias.aspx" />
     <Content Include="Reportes\reportesComisiones.aspx" />
+    <Content Include="Reportes\reportesCursos.aspx" />
     <Content Include="Reportes\reportesDocentesCursos.aspx" />
     <Content Include="Reportes\reportesMaterias.aspx" />
     <Content Include="Reportes\reportUsuario.aspx" />
@@ -243,6 +245,13 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Curso.aspx.cs">
+      <DependentUpon>Curso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Curso.aspx.designer.cs">
+      <DependentUpon>Curso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -281,6 +290,13 @@
     </Compile>
     <Compile Include="Reportes\reportesComisiones.aspx.designer.cs">
       <DependentUpon>reportesComisiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\reportesCursos.aspx.cs">
+      <DependentUpon>reportesCursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\reportesCursos.aspx.designer.cs">
+      <DependentUpon>reportesCursos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\reportesDocentesCursos.aspx.cs">
       <DependentUpon>reportesDocentesCursos.aspx</DependentUpon>
@@ -364,6 +380,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Reportes\rComisiones.rdlc" />
     <EmbeddedResource Include="Reportes\rDocentesCursos.rdlc" />
+    <EmbeddedResource Include="Reportes\rCursos.rdlc" />
     <EmbeddedResource Include="Reportes\rMaterias.rdlc" />
     <EmbeddedResource Include="Reportes\rUsuarios.rdlc" />
   </ItemGroup>

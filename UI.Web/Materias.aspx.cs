@@ -132,7 +132,7 @@ namespace UI.Web
         }
 
         private void SaveMaterias(Materia materia)
-        {
+        {   
             this.MateriaData.Save(materia);
         }
 
@@ -185,7 +185,15 @@ namespace UI.Web
 
         private void DeleteMaterias(int id)
         {
-            this.MateriaData.Delete(id);
+            List<Business.Entities.Curso> cursos = MateriaData.BuscarCursos(id);
+            if (cursos.Count != 0)
+            {
+                Page.Response.Write("Debe eliminar los cursos que dan esta materia");
+            }
+            else
+            {
+                this.MateriaData.Delete(id);
+            }
         }
 
         protected void lbtnNuevo_Click(object sender, EventArgs e)

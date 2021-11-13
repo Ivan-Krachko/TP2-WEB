@@ -35,49 +35,43 @@
         <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-            ErrorMessage="El campo nombre no puede estar vacio" 
+            ErrorMessage="el Nombre esta vacio" 
             ControlToValidate="txtNombre" ForeColor="Red">*</asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblApellido" runat="server" Text="Apellido"></asp:Label>
         <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-            ErrorMessage="El campo apellido no puede estar vacio" 
+            ErrorMessage="el Apellido esta vacio" 
             ControlToValidate="txtApellido" ForeColor="Red">*</asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-            ErrorMessage="El campo mail no puede estar vacio" 
-            ControlToValidate="txtEmail" ForeColor="Red">*</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+            ErrorMessage="el Email esta vacio" 
+            ControlToValidate="txtEmail" ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+          <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+            ControlToValidate="txtEmail" ForeColor ="Red"
+            ErrorMessage="mail invalido" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic">*</asp:RegularExpressionValidator>
         <br />
         <asp:Label ID="lblHabilitado" runat="server" Text="Habilitado"></asp:Label>
         <asp:CheckBox ID="chkHabilitado" runat="server" /><br />
         <asp:Label ID="lblNombreUsuario" runat="server" Text="Usuario"></asp:Label>
         <asp:TextBox ID="txtNombreUsuario" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
-            ErrorMessage="El campo nombre usuario no puede estar vacio" 
-            ControlToValidate="txtNombreUsuario" ForeColor="Red">*</asp:RequiredFieldValidator>
+         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+            ErrorMessage="el NombreUsuario esta vacio" 
+            ControlToValidate="txtNombreUsuario" ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblClave" runat="server" Text="Clave"></asp:Label>
         <asp:TextBox ID="txtClave" TextMode="Password" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
-            ErrorMessage="El campo clave no puede estar vacio" 
-            ControlToValidate="txtClave" ForeColor="Red">*</asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblConfirmarClave" runat="server" Text="ConfirmarClave"></asp:Label>
         <asp:TextBox ID="txtConfirmarClave" TextMode="Password" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
-            ErrorMessage="La clave es requerida" 
-            ControlToValidate="txtConfirmarClave" ForeColor="Red">*</asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="CompareValidator" runat="server"
-                 ErrorMessage="Las claves deben coincidir"
-                 ControlToValidate="txtConfirmarClave" ControlToCompare="txtClave" ForeColor="Red">*</asp:CompareValidator>
         <br />
         <asp:Panel ID="formActionsPanel" runat="server">
             <asp:LinkButton ID="lnkbtnAceptar" runat="server" OnClick="lnkbtnAceptar_Click">Aceptar</asp:LinkButton>
             <asp:LinkButton ID="lnkbtnCancelar" runat="server" OnClick="lnkbtnCancelar_Click">Cancelar</asp:LinkButton>
             <br />
-            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+            <asp:ValidationSummary ID="ValidationSummary1" ForeColor="Red" HeaderText="Validaciones de Errores" runat="server" />
         </asp:Panel>
 
     </asp:Panel>

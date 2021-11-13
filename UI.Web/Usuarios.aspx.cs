@@ -101,12 +101,12 @@ namespace UI.Web
         }
         private void LoadForm (int id) 
         {
-            this.UsuarioActual = this.Logic.GetOne(id);
-            this.txtNombre.Text = this.UsuarioActual.Nombre;
-            this.txtApellido.Text = this.UsuarioActual.Apellido;
-            this.txtEmail.Text = this.UsuarioActual.Email;
-            this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
-            this.txtNombreUsuario.Text = this.UsuarioActual.NombreUsuario;
+                this.UsuarioActual = this.Logic.GetOne(id);
+                this.txtNombre.Text = this.UsuarioActual.Nombre;
+                this.txtApellido.Text = this.UsuarioActual.Apellido;
+                this.txtEmail.Text = this.UsuarioActual.Email;
+                this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
+                this.txtNombreUsuario.Text = this.UsuarioActual.NombreUsuario;
         }
 
         protected void lnkbtnEditar_Click(object sender, EventArgs e)
@@ -130,7 +130,34 @@ namespace UI.Web
         }
         private void SaveEntity(Usuario usu) //save
         {
-            this.Logic.Save(usu);
+            if(FormMode == FormModes.Alta)
+            {
+                //No permitir el alta si no se encuentra en la Tabla Personas
+                Persona per =Logic.BuscaPersonaxNombApeEm(UsuarioActual.Nombre, UsuarioActual.Apellido, UsuarioActual.Email);
+                if(per.ID != 0 && per.Nombre != null)
+                {
+                    this.Logic.CargarIDPersona(UsuarioActual.Nombre, UsuarioActual.Apellido, UsuarioActual.Email, per.ID);
+                    this.Logic.Save(usu);
+                }
+                else
+                {
+                    Page.Response.Write("Debe resgistrar la persona antes que el usuario de esa persona");
+                }
+            }
+            else if (FormMode == FormModes.Modificacion)
+            {
+                Usuario usuarioAnterior = Logic.GetOne(UsuarioActual.ID);
+                Persona per = Logic.BuscaPersonaxNombApeEm(usuarioAnterior.Nombre, usuarioAnterior.Apellido, usuarioAnterior.Email);
+
+                Logic.ActualizarPersona(UsuarioActual.Nombre, UsuarioActual.Apellido, UsuarioActual.Email, per.ID);
+
+                this.Logic.Save(usu);
+            }
+            else
+            {
+                this.Logic.Save(usu);
+            }
+            
         }
 
         protected void lnkbtnAceptar_Click(object sender, EventArgs e)

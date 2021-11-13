@@ -125,7 +125,7 @@ namespace UI.Web
             ddlDocente.SelectedValue = DocenteCurso.IDDocente.ToString();
 
             CursoLogic cursoData = new CursoLogic();
-            Curso curso = cursoData.GetOne(DocenteCurso.IDCurso);
+            Business.Entities.Curso curso = cursoData.GetOne(DocenteCurso.IDCurso);
 
             ddlMateria.SelectedValue = curso.IDMateria.ToString();
             ddlComision.SelectedValue = curso.IDComision.ToString();
@@ -151,7 +151,7 @@ namespace UI.Web
             int materia = int.Parse(ddlMateria.SelectedValue);
             int comision = int.Parse(ddlComision.SelectedValue);
 
-            Curso curso = DocenteCursoData.BuscarCurso(materia, comision);
+            Business.Entities.Curso curso = DocenteCursoData.BuscarCurso(materia, comision);
 
             dc.IDCurso = curso.ID;
 

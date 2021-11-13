@@ -167,7 +167,9 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdBuscarCurso = new SqlCommand(
-                    "select * from cursos where id_materia = @idMateria and id_comision=@idComision;", sqlConn);
+                    "select * from cursos " +
+                    "where id_materia = @idMateria and " +
+                    "id_comision=@idComision;", sqlConn);
                 cmdBuscarCurso.Parameters.Add("@idMateria", SqlDbType.Int).Value = idMateria;
                 cmdBuscarCurso.Parameters.Add("@idComision", SqlDbType.Int).Value = idComision;
                 SqlDataReader drCurso = cmdBuscarCurso.ExecuteReader();

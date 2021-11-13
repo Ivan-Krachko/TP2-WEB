@@ -39,5 +39,10 @@ namespace Business.Logic
         {
             CursoData.Delete(id);
         }
+
+        public List<DocenteCurso> BuscaDocentesCurso(int idCurso)
+        {
+            return CursoData.BuscaDocentesCurso(idCurso);
+        }
     }
 }
