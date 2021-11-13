@@ -42,9 +42,24 @@ namespace Business.Logic
             UsuarioData.Delete(id);
         }
 
-        public Business.Entities.Persona BuscarPersona(int id)
+        public Persona BuscaPersonaxNombApeEm(string nombre, string apellido, string mail)
         {
-            return UsuarioData.BuscarPersona(id);
+            return UsuarioData.BuscaPersonaxNombApeEm(nombre, apellido, mail);
+        }
+
+        public void CargarIDPersona(string nombreUser, string apellidoUser, string emailUser, int idPersona)
+        {
+            UsuarioData.CargarIDPersona(nombreUser, apellidoUser, emailUser, idPersona);
+        }
+
+        public Persona BuscaPersona(int idUsuario)
+        {
+            return UsuarioData.BuscarPersona(idUsuario);
+        }
+
+        public void ActualizarPersona(string nombreUsuario, string apellidoUsuario, string email, int idPersona)
+        {
+            UsuarioData.ActualizarPersona(nombreUsuario, apellidoUsuario, email, idPersona);
         }
     }
 }

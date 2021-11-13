@@ -4,6 +4,7 @@
     <siteMapNode url="~/Usuarios.aspx" title="Usuarios"  description="Usuarios" />
 	<siteMapNode url="~/Materias.aspx" title="Materias" description="Materias"/>
 	<siteMapNode url="~/Comisiones.aspx" title="Comisiones" description="Comisiones"/>
+	  <siteMapNode url="~/Curso.aspx" title="Cursos" description="Cursos" />
 	<siteMapNode url="~/DocentesCurso.aspx" title="DocentesCursos" description="DocentesCurso"/>
   </siteMapNode>
 </siteMap>

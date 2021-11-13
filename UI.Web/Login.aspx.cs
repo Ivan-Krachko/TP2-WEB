@@ -37,7 +37,7 @@ namespace UI.Web
             {
                 if (usuarioActual.Clave == txtContraseña.Text)
                 {
-                    Persona persona = ul.BuscarPersona(usuarioActual.ID);
+                    Persona persona = ul.BuscaPersona(usuarioActual.ID);
                     Session["idPersona"] = persona.ID.ToString();
                     Session["tipoPersona"] = persona.TipoPersona.ToString();
                     Session["idUsuario"] = usuarioActual.ID;

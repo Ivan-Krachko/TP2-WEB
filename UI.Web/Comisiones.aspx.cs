@@ -62,7 +62,7 @@ namespace UI.Web
                 lnkbtnEliminar.Visible = false;
                 lnkbtnEditar.Visible = false;
                 int id = int.Parse(Session["idPersona"].ToString());
-                gridView.DataSource = ComLogic.ComisionData.BuscarComisionesxPersona(id);
+                gridView.DataSource = ComLogic.BuscarComisionesxPersona(id);
                 gridView.DataBind();
             }
         }
@@ -182,7 +182,17 @@ namespace UI.Web
         }
         private void DeleteComision(int id)
         {
-            this.ComLogic.Delete(id);//le paso al metodo Delete la id recibida como parametro para poder eliminar la com correspondiente a esa id,
+
+            List<Business.Entities.Curso> cursos = ComLogic.BuscarCursos(id);
+            if(cursos.Count != 0)
+            {
+                Page.Response.Write("Debe eliminar los cursos que se dan en esta comision");
+            }
+            else
+            {
+                this.ComLogic.Delete(id);//le paso al metodo Delete la id recibida como parametro para poder eliminar la com correspondiente a esa id,
+            }
+            
         }
 
         protected void lnkbtnNuevo_Click(object sender, EventArgs e)

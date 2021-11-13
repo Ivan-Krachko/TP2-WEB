@@ -30,7 +30,7 @@
             <asp:LinkButton ID="lbtnInforme" runat="server" OnClick="lbtnInforme_Click">Infrome</asp:LinkButton>
         </asp:Panel>
         <asp:Panel ID="formPanel" Visible="false" runat="server">
-        <asp:Label ID="lblDescCom" runat="server" Text="DescComision"></asp:Label>
+        <asp:Label ID="lblDescCom" runat="server" Text="Descripcion comision"></asp:Label>
         <asp:TextBox ID="txtDescCom" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="La descripcion es requerida"
         ControlToValidate="txtDescCom" ForeColor="Red"    
