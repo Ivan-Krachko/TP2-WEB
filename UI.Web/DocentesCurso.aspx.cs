@@ -169,7 +169,22 @@ namespace UI.Web
 
         private void SaveDocenteCurso(DocenteCurso dc)
         {
-            DocenteCursoData.Save(dc);
+            if(FormMode == FormModes.Alta)
+            {
+                if(DocenteCurso.IDCurso != 0)
+                {
+                    DocenteCursoData.Save(dc);
+                }
+                else
+                {
+                    Page.Response.Write("No se encontro el curso");
+                }
+            }
+            else
+            {
+                DocenteCursoData.Save(dc);
+            }
+            
         }
 
         protected void lbtnAceptar_Click(object sender, EventArgs e)
