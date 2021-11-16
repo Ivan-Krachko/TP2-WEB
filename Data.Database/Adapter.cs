@@ -9,6 +9,7 @@ namespace Data.Database
 {
     public class Adapter
     {
+     
         public SqlConnection sqlConn { get; set; }
         const string cnnStrDefault = "ConectionStringExpress";
 
